@@ -1,4 +1,5 @@
 const Perfume = require('../models/Perfume');
+const {Op } = require('sequelize');
 
 exports.addPerfume = async (req, res) => {
   try {
