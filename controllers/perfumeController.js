@@ -39,7 +39,7 @@ exports.editPerfume = async (req, res) => {
 
     await perfume.save();
 
-    return res.json({ message: 'Perfume updated successfully', perfume });
+    return res.status(200).json({ message: 'Perfume updated successfully', perfume });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -58,7 +58,7 @@ exports.deletePerfume = async (req, res) => {
 
     await perfume.destroy();
 
-    return res.json({ message: 'Perfume deleted successfully' });
+    return res.status(200).json({ message: 'Perfume deleted successfully' });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -75,7 +75,7 @@ exports.getPerfumeById = async (req, res) => {
       return res.status(404).json({ message: 'Perfume not found' });
     }
 
-    return res.json({ perfume });
+    return res.status(200).json({ perfume });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -87,8 +87,11 @@ exports.getPerfumesByCategory = async (req, res) => {
 
   try {
     const perfumes = await Perfume.findAll({ where: { category } });
+    if (!perfumes) {
+        return res.status(404).json({ message: 'Perfumes not found' });
+      }
 
-    return res.json({ perfumes });
+    return res.status(200).json({ perfumes });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -100,8 +103,11 @@ exports.getPerfumesByColor = async (req, res) => {
 
   try {
     const perfumes = await Perfume.findAll({ where: { color } });
+    if (!perfumes) {
+        return res.status(404).json({ message: 'Perfumes not found' });
+      }
 
-    return res.json({ perfumes });
+    return res.status(200).json({ perfumes });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -119,8 +125,11 @@ exports.getPerfumesByPriceRange = async (req, res) => {
         },
       },
     });
+    if (!perfumes) {
+        return res.status(404).json({ message: 'Perfumes not found' });
+      }
 
-    return res.json({ perfumes });
+    return res.status(200).json({ perfumes });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -132,8 +141,11 @@ exports.getPerfumesByRating = async (req, res) => {
 
   try {
     const perfumes = await Perfume.findAll({ where: { rating } });
+    if (!perfumes) {
+        return res.status(404).json({ message: 'Perfumes not found' });
+      }
 
-    return res.json({ perfumes });
+    return res.status(200).json({ perfumes });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
@@ -143,8 +155,10 @@ exports.getPerfumesByRating = async (req, res) => {
 exports.getAllPerfumes = async (req, res) => {
   try {
     const perfumes = await Perfume.findAll();
-
-    return res.json({ perfumes });
+    if (!perfumes) {
+        return res.status(404).json({ message: 'Perfumes not found' });
+      }
+    return res.status(200).json({ perfumes });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal Server Error' });
