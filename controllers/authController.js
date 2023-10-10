@@ -34,6 +34,6 @@ exports.logout = (req, res) => {
         if (err) {
           return res.status(500).json({ message: 'Error logging out' });
         }
-        res.status(200).json({ message: 'Logout successful' });
+        res.status(204).json({ message: 'Logout successful' });
       });
 }
