@@ -22,7 +22,15 @@ Before using the API endpoints, you need to be a registered user and be logged i
 
 ## Endpoints
 
-### Add a New Perfume
+## Get All Perfumes
+Get a list of all perfumes.
+
+URL: /api/perfumes/get-all
+Method: GET
+Authentication: Required
+Example Request
+
+## Add a New Perfume
 
 - **URL**: `/api/perfumes/add`
 - **Method**: `POST`
@@ -37,6 +45,7 @@ Before using the API endpoints, you need to be a registered user and be logged i
   "price": 49.99,
   "rating": 4.5
 }
+```
 
 ```json
 {
@@ -52,4 +61,5 @@ Before using the API endpoints, you need to be a registered user and be logged i
     "updatedAt": "2023-10-01T12:00:00Z"
   }
 }
+```
 
