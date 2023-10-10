@@ -124,8 +124,6 @@ Before using the API, you need to authenticate by sending a POST request to `/ap
     "message": "Perfume not found"
   }
 
-## Perfume Management (Continued)
-
 ### Delete a Perfume
 
 - **URL**: `/api/perfumes/delete/:id`
@@ -197,8 +195,6 @@ Before using the API, you need to authenticate by sending a POST request to `/ap
   {
     "message": "Internal Server Error"
   }
-
-## Perfume Management (Continued)
 
 ### Get Perfumes by Color
 
