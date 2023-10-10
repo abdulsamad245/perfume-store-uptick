@@ -233,10 +233,9 @@ Before using the API, you need to authenticate by sending a POST request to `/ap
 
 ### Get Perfumes by Price Range
 
-- **URL**: `/api/perfumes/get-by-price-range`
+- **URL**: `/api/perfumes/get-by-price-range?minPrice={}&maxPrice={}`
 - **Method**: `GET`
 - **Request**:
-
   - Query Parameters:
     - `minPrice`: Minimum price of perfumes
     - `maxPrice`: Maximum price of perfumes
@@ -300,8 +299,7 @@ Before using the API, you need to authenticate by sending a POST request to `/ap
 - **URL**: `/api/perfumes/get-all`
 - **Method**: `GET`
 - **Request**:
-  - Headers:
-    - `Authorization: Bearer your_auth_token`
+
 - **Response**:
   - Status Code: `200 OK`
   - Body:
@@ -334,3 +332,14 @@ Before using the API, you need to authenticate by sending a POST request to `/ap
   {
     "message": "Internal Server Error"
   }
+
+## Logout
+
+- **URL**: `/api/auth/logout`
+- **Method**: `POST`
+
+### Response
+
+- Status Code: `204 No Content`
+
+
