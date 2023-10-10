@@ -1,9 +1,11 @@
 const passport = require('passport');
-const User = require('../models/User');
 
 exports.login = (req, res, next) => {
+    // console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
+    console.log({info});
     if (err) {
+       
       return next(err);
     }
     if (!user) {
@@ -19,9 +21,19 @@ exports.login = (req, res, next) => {
 };
 
 exports.getProfile = (req, res) => {
+    // console.log(req.body);
   if (req.isAuthenticated()) {
     return res.json({ user: req.user });
   } else {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 };
+
+exports.logout = (req, res) => {
+    req.logout((err) => {
+        if (err) {
+          return res.status(500).json({ message: 'Error logging out' });
+        }
+        res.status(200).json({ message: 'Logout successful' });
+      });
+}

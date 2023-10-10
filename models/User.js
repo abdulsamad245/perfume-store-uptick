@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const crypto = require('crypto');
 
 const User = sequelize.define('User', {
   username: {
@@ -11,10 +12,20 @@ const User = sequelize.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+}, {
+  hooks: {
+    beforeCreate: (user) => {
+      if (user.password) {
+        user.password = hashPassword(user.password);
+      }
+    },
+  },
 });
 
-// sequelize.sync({ force: true });
+function hashPassword(password) {
+  const hash = crypto.createHash('sha256');
+  hash.update(password);
+  return hash.digest('hex');
+}
 
 module.exports = User;
-
-

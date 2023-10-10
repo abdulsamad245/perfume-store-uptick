@@ -6,7 +6,8 @@ console.log({ username: process.env.DB_USER, password: process.env.DB_PASSWORD})
 
 sequelize.sync().then(async () => {
   try {
-    await User.create({ username: process.env.DB_USER, password: process.env.DB_USER});
+    console.log({seed:process.env.TEST_PASSWORD});
+    await User.create({ username: process.env.TEST_USER, password: process.env.TEST_PASSWORD});
     
     console.log('Database seeded successfully');
   } catch (error) {

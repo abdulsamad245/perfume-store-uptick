@@ -2,6 +2,7 @@ const Perfume = require('../models/Perfume');
 const {Op } = require('sequelize');
 
 exports.addPerfume = async (req, res) => {
+    return res.status(201).json({ message: 'Perfume added successfully', perfume: "newPerfume" });
   try {
     const { name, category, color, price, rating } = req.body;
     

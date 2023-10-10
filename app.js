@@ -2,19 +2,20 @@ const express = require('express');
 const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const path = require('path');
 const dotenv = require('dotenv');
+require('./config/passport');
 
 dotenv.config();
 
 const app = express();
 
-// Middleware
+// Middlewares
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Initialize Passport.js
-require('./config/passport');
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -24,6 +25,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 // Routes
 const perfumeRoutes = require('./routes/perfumeRoutes');
